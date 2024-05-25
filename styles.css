@@ -1,0 +1,130 @@
+/* Basic styles */
+body {
+    font-family: 'Montserrat', sans-serif; /* Use a different font */
+    margin: 0;
+    padding: 0;
+    background-color: #333; /* Darker gray background */
+    color: #fff; /* White text */
+  }
+  
+  h1, h2, h3 {
+    margin: 0;
+    padding: 20px;
+    font-weight: bold;
+    color: #f5f5f5; /* Light gray for headings */
+  }
+  
+  p {
+    margin: 10px;
+    line-height: 1.6;
+  }
+  
+  a {
+    color: #007bff; /* Blue for links */
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #0056b3; /* Darker blue for link hover */
+  }
+  
+  .container {
+    max-width: 900px; /* Adjust container width as needed */
+    margin: 0 auto;
+    padding: 30px;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #222; /* Even darker header background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+  }
+  
+  .profile-pic {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px; /* Set width and height equal for a circle */
+    border-radius: 50%; /* Make profile pic a circle */
+    border: 3px solid #007bff; /* Blue border around profile pic */
+    object-fit: cover; /* This scales the image to fill the container */
+  }
+  
+  /* Skills section styles */
+  #skills {
+    text-align: center; /* Center skills section content */
+  }
+  
+  #skills ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Arrange skills list items in a row */
+    flex-wrap: wrap; /* Wrap skills to multiple lines if needed */
+    justify-content: center; /* Center skills horizontally */
+  }
+  
+  #skills li {
+    margin: 10px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    background-color: #444; /* Darker gray for skills list items */
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s ease; /* Add a hover effect */
+  }
+  
+  #skills li:hover {
+    background-color: #007bff; /* Blue background on hover */
+  }
+  
+  /* Experience section styles */
+  .experience .timeline {
+    border-left: 2px solid #777; /* Thicker timeline line */
+    padding: 30px 0;
+  }
+  
+  .experience .entry {
+    margin-left: 30px;
+    padding: 20px;
+    border-left: 5px solid #0056b3; /* Darker blue line for timeline entries */
+    position: relative;
+  }
+  
+  .experience .entry::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -3px;
+    left: -12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 3px solid #0056b3;
+  }
+  
+  /* Hobbies section styles */
+  .hobbies {
+    text-align: center;
+  }
+  
+  .hobbies p {
+    font-size: 20px;
+    color: #aaa; /* Lighter gray for hobbies text */
+  }
+  
+  /* Contact section styles */
+  .contact {
+    text-align: left;
+  }
+  
+  .contact p {
+    margin-top: 2px;
+  }
+  
+  .contact a {
+    display: inline-block; /* Display contact links as inline blocks */
+    margin: 2px;
+    padding: 2px 2px;
+    border-radius: 2px;}
