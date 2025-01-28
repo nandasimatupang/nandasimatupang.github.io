@@ -1,130 +1,96 @@
-/* Basic styles */
-body {
-    font-family: 'Montserrat', sans-serif; /* Use a different font */
-    margin: 0;
-    padding: 0;
-    background-color: #333; /* Darker gray background */
-    color: #fff; /* White text */
-  }
-  
-  h1, h2, h3 {
-    margin: 0;
+/* Portfolio Section Styles */
+.portfolio-section {
+    padding: 50px 0;
+    background-color: #2a2a2a;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     padding: 20px;
-    font-weight: bold;
-    color: #f5f5f5; /* Light gray for headings */
-  }
-  
-  p {
-    margin: 10px;
-    line-height: 1.6;
-  }
-  
-  a {
-    color: #007bff; /* Blue for links */
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: #0056b3; /* Darker blue for link hover */
-  }
-  
-  .container {
-    max-width: 900px; /* Adjust container width as needed */
-    margin: 0 auto;
-    padding: 30px;
-  }
-  
-  /* Header styles */
-  header {
-    background-color: #222; /* Even darker header background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
-  }
-  
-  .profile-pic {
-    display: block;
-    margin: 0 auto;
-    width: 200px;
-    height: 200px; /* Set width and height equal for a circle */
-    border-radius: 50%; /* Make profile pic a circle */
-    border: 3px solid #007bff; /* Blue border around profile pic */
-    object-fit: cover; /* This scales the image to fill the container */
-  }
-  
-  /* Skills section styles */
-  #skills {
-    text-align: center; /* Center skills section content */
-  }
-  
-  #skills ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Arrange skills list items in a row */
-    flex-wrap: wrap; /* Wrap skills to multiple lines if needed */
-    justify-content: center; /* Center skills horizontally */
-  }
-  
-  #skills li {
-    margin: 10px;
-    padding: 15px 25px;
+}
+
+.project-card {
+    background: #444;
     border-radius: 10px;
-    background-color: #444; /* Darker gray for skills list items */
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    padding: 15px;
+    margin: 0;
     color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: background-color 0.3s ease; /* Add a hover effect */
-  }
-  
-  #skills li:hover {
-    background-color: #007bff; /* Blue background on hover */
-  }
-  
-  /* Experience section styles */
-  .experience .timeline {
-    border-left: 2px solid #777; /* Thicker timeline line */
-    padding: 30px 0;
-  }
-  
-  .experience .entry {
-    margin-left: 30px;
-    padding: 20px;
-    border-left: 5px solid #0056b3; /* Darker blue line for timeline entries */
+}
+
+.project-card p {
+    padding: 0 15px 15px;
+    color: #ccc;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 5% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
     position: relative;
-  }
-  
-  .experience .entry::before {
-    content: "";
-    display: block;
+}
+
+.close {
     position: absolute;
-    top: -3px;
-    left: -12px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #fff;
-    border: 3px solid #0056b3;
-  }
-  
-  /* Hobbies section styles */
-  .hobbies {
-    text-align: center;
-  }
-  
-  .hobbies p {
-    font-size: 20px;
-    color: #aaa; /* Lighter gray for hobbies text */
-  }
-  
-  /* Contact section styles */
-  .contact {
-    text-align: left;
-  }
-  
-  .contact p {
-    margin-top: 2px;
-  }
-  
-  .contact a {
-    display: inline-block; /* Display contact links as inline blocks */
-    margin: 2px;
-    padding: 2px 2px;
-    border-radius: 2px;}
+    right: 20px;
+    top: 10px;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Navigation Styles */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 20px 0;
+    background-color: #222;
+}
+
+.nav-links li {
+    margin: 0 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
