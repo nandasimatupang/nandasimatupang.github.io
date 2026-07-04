@@ -60,6 +60,19 @@
       a.appendChild(label);
       wrap.appendChild(a);
     }
+    // Resume download button
+    if (PROFILE.resume) {
+      const resumeBtn = el("a", "hero-resume");
+      resumeBtn.href = PROFILE.resume;
+      resumeBtn.target = "_blank";
+      resumeBtn.rel = "noopener noreferrer";
+      resumeBtn.setAttribute("aria-label", "Download resume");
+      resumeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+      const resumeLabel = el("span");
+      resumeLabel.textContent = "Resume";
+      resumeBtn.appendChild(resumeLabel);
+      wrap.appendChild(resumeBtn);
+    }
   }
 
   /* ---------- about ---------- */
@@ -115,7 +128,7 @@
   /* ---------- projects ---------- */
   function buildProjectCard(p, index) {
     const card = el("a", "project-card reveal");
-    if (p.slug && p.writeup && p.writeup.length) {
+    if (p.slug && p.content) {
       card.href = "#/project/" + index;
     } else {
       const href = p.demo || p.github || "#";
@@ -124,6 +137,15 @@
         card.target = "_blank";
         card.rel = "noopener noreferrer";
       }
+    }
+
+    // Thumbnail image (optional)
+    if (p.image) {
+      const thumb = el("img", "project-thumb");
+      thumb.src = p.image;
+      thumb.alt = p.title + " thumbnail";
+      thumb.loading = "lazy";
+      card.appendChild(thumb);
     }
 
     const title = el("h3", "project-title");
@@ -145,7 +167,7 @@
       card.appendChild(tags);
     }
     const arrow = el("span", "project-arrow");
-    const hasWriteup = p.slug && p.writeup && p.writeup.length;
+    const hasWriteup = p.slug && p.content;
     arrow.textContent = hasWriteup ? "Read more →" : (p.github ? "View on GitHub →" : "View project →");
     card.appendChild(arrow);
 
@@ -160,7 +182,7 @@
   }
 
   /* ---------- project detail ---------- */
-  function renderProjectDetail(project, index) {
+  async function renderProjectDetail(project, index) {
     const wrap = document.getElementById("projectContent");
     document.title = project.title + " — Nanda Simatupang";
 
@@ -213,54 +235,59 @@
     }
     if (links.children.length) wrap.appendChild(links);
 
-    // --- writeup blocks ---
-    if (project.writeup && project.writeup.length) {
-      const body = el("div", "pp-writeup");
-      project.writeup.forEach((block) => {
-        if (block.type === "heading") {
-          const h = el("h2", "pp-heading");
-          h.textContent = block.text;
-          body.appendChild(h);
-        } else if (block.type === "paragraph") {
-          const p = el("p", "pp-paragraph");
-          p.textContent = block.text;
-          body.appendChild(p);
-        } else if (block.type === "list") {
-          const ul = el("ul", "pp-list");
-          (block.items || []).forEach((item) => {
-            const li = el("li");
-            li.textContent = item;
-            ul.appendChild(li);
-          });
-          body.appendChild(ul);
-        }
-      });
-      wrap.appendChild(body);
+    // --- fetch & render markdown content ---
+    if (project.content) {
+      try {
+        const response = await fetch(project.content);
+        if (!response.ok) throw new Error("Failed to load project content");
+        const md = await response.text();
+        const body = el("div", "pp-writeup");
+        body.innerHTML = marked.parse(md);
+        // Add lazy loading to all markdown images
+        body.querySelectorAll("img").forEach(function (img) { img.loading = "lazy"; });
+        wrap.appendChild(body);
+      } catch (e) {
+        const err = el("p", "project-notfound");
+        err.textContent = "Could not load project content.";
+        wrap.appendChild(err);
+      }
     }
   }
 
-  function showProjectDetail(index) {
+  async function showProjectDetail(index) {
     var project = PROJECTS[index];
-    if (!project || !project.writeup || !project.writeup.length) {
+    if (!project || !project.content) {
       // Fallback: redirect to main projects section
       window.location.hash = "projects";
       return;
     }
-    document.getElementById("mainContent").style.display = "none";
-    document.getElementById("projectDetail").style.display = "block";
-    window.scrollTo(0, 0);
+    document.body.classList.add("showing-detail");
     document.getElementById("toTop").classList.remove("visible");
     // Clear nav active states
     document.querySelectorAll(".nav-links a").forEach(function (l) { l.classList.remove("active"); });
     // Clear previous content
     document.getElementById("projectContent").innerHTML = "";
-    renderProjectDetail(project, index);
+
+    // Hero image (optional)
+    if (project.image) {
+      const hero = el("img", "pp-hero-img");
+      hero.src = project.image;
+      hero.alt = project.title;
+      document.getElementById("projectContent").appendChild(hero);
+    }
+
+    await renderProjectDetail(project, index);
+    // Scroll to top after DOM updates — use instant to override smooth scroll
+    requestAnimationFrame(function () {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    });
   }
 
   function showMainContent(sectionId) {
-    document.getElementById("mainContent").style.display = "";
-    document.getElementById("projectDetail").style.display = "none";
+    document.body.classList.remove("showing-detail");
     document.title = "Nanda Simatupang";
+    // Keep URL clean on the home page
+    history.replaceState(null, "", window.location.pathname);
     if (sectionId && sectionId !== "top") {
       setTimeout(function () {
         var el = document.getElementById(sectionId);
@@ -331,7 +358,7 @@
   /* ---------- contact ---------- */
   function renderContact() {
     document.getElementById("contactText").textContent =
-      "I'm a fresh data science graduate open to junior roles and internships in machine learning, NLP, or data analysis. Feel free to reach out.";
+      "I'm a fresh data science graduate open to junior roles in machine learning, NLP, or data analysis. Feel free to reach out.";
 
     const emailLink = document.getElementById("contactEmail");
     emailLink.href = "mailto:" + PROFILE.email;
@@ -365,10 +392,18 @@
       burger.setAttribute("aria-expanded", open);
     });
     links.forEach((l) =>
-      l.addEventListener("click", () => {
+      l.addEventListener("click", (e) => {
+        e.preventDefault();
         linksWrap.classList.remove("open");
         burger.classList.remove("open");
         burger.setAttribute("aria-expanded", "false");
+        const id = l.getAttribute("href").slice(1);
+        if (document.body.classList.contains("showing-detail")) {
+          showMainContent(id);
+        } else {
+          var el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }
       })
     );
 
@@ -414,7 +449,7 @@
     const btn = document.getElementById("toTop");
     window.addEventListener("scroll", () => {
       // Only show on main content, not on project detail
-      if (document.getElementById("mainContent").style.display === "none") return;
+      if (document.body.classList.contains("showing-detail")) return;
       btn.classList.toggle("visible", window.scrollY > 600);
     }, { passive: true });
     btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));

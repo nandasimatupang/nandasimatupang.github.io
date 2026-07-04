@@ -21,8 +21,8 @@
       <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
         <a href="#about" data-nav>About</a>
-        <a href="#skills" data-nav>Skills</a>
         <a href="#projects" data-nav>Projects</a>
+        <a href="#skills" data-nav>Skills</a>
         <a href="#experience" data-nav>Experience</a>
         <a href="#certs" data-nav>Certs</a>
         <a href="#contact" data-nav>Contact</a>
@@ -51,19 +51,19 @@
       </div>
     </section>
 
-    <!-- ============ SKILLS ============ -->
-    <section class="block" id="skills">
-      <div class="wrap">
-        <h2 class="block-title">Skills</h2>
-        <div class="block-body" id="skillsBody"></div>
-      </div>
-    </section>
-
     <!-- ============ PROJECTS ============ -->
     <section class="block" id="projects">
       <div class="wrap">
         <h2 class="block-title">Projects</h2>
         <div class="project-list" id="projectList"></div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="block" id="skills">
+      <div class="wrap">
+        <h2 class="block-title">Skills</h2>
+        <div class="block-body" id="skillsBody"></div>
       </div>
     </section>
 
@@ -98,7 +98,7 @@
   </div><!-- /mainContent -->
 
   <!-- ============ PROJECT DETAIL (hidden by default) ============ -->
-  <div id="projectDetail" class="project-page" style="display:none">
+  <div id="projectDetail" class="project-page">
     <div class="wrap">
       <a href="#projects" class="back-link" id="backLink">← Back to projects</a>
       <div id="projectContent"></div>
@@ -116,6 +116,7 @@
 
   <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="data.js?v=2"></script>
   <script src="script.js?v=2"></script>
 </body>
