@@ -3,121 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nanda Simatupang — fresh data science graduate. ML, NLP, and deep learning projects." />
+  <meta name="description" content="Nanda Simatupang — data science graduate working across ML, NLP, and deep learning." />
   <meta name="author" content="Nanda Simatupang" />
+  <meta name="theme-color" content="#0A1628" />
   <title>Nanda Simatupang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1b1e'/><text x='16' y='22' font-size='16' text-anchor='middle' font-family='monospace' fill='%237dd3c0'>n</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230A1628'/><text x='16' y='22' font-size='16' text-anchor='middle' font-family='monospace' fill='%23C9A962'>n</text></svg>" />
 </head>
 <body>
-
-  <!-- ============ NAV ============ -->
-  <nav class="nav" id="nav">
-    <div class="wrap nav-inner">
-      <a href="#top" class="nav-name">Nanda Simatupang</a>
-      <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
-      <div class="nav-links" id="navLinks">
-        <a href="#about" data-nav>About</a>
-        <a href="#projects" data-nav>Projects</a>
-        <a href="#skills" data-nav>Skills</a>
-        <a href="#experience" data-nav>Experience</a>
-        <a href="#certs" data-nav>Certs</a>
-        <a href="#contact" data-nav>Contact</a>
-      </div>
+  <div class="bg-grid"></div>
+  <nav class="nav" id="nav"><div class="wrap nav-inner">
+    <a href="#top" class="nav-name">Nanda Simatupang</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about" data-nav>About</a><a href="#projects" data-nav>Projects</a><a href="#skills" data-nav>Skills</a><a href="#experience" data-nav>Experience</a><a href="#certs" data-nav>Certs</a><a href="#contact" data-nav>Contact</a>
     </div>
-  </nav>
-
-  <main id="top">
-  <div id="mainContent">
-
-    <!-- ============ HERO ============ -->
+  </div></nav>
+  <main id="top"><div id="mainContent">
     <header class="hero">
-      <div class="wrap">
-        <p class="hero-role" id="heroRole"></p>
-        <h1 class="hero-name" id="heroName">Nanda Simatupang</h1>
-        <p class="hero-intro" id="heroIntro"></p>
-        <div class="hero-links" id="heroLinks"></div>
-      </div>
+      <div class="hero-particles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <svg class="hero-flow" viewBox="0 0 1440 500" preserveAspectRatio="none" aria-hidden="true"><path d="M0 370C220 280 350 480 600 330s340-20 500-130 210-130 340-90"/><path d="M0 430c250-130 370 10 620-120s360-80 820-260"/><path d="M150 490c170-220 390-190 530-110s260 0 460-180 190-120 300-130"/></svg>
+      <div class="wrap"><p class="hero-role" id="heroRole"></p><h1 class="hero-name" id="heroName">Nanda Simatupang</h1><p class="hero-intro" id="heroIntro"></p><div class="hero-links" id="heroLinks"></div></div>
     </header>
-
-    <!-- ============ ABOUT ============ -->
-    <section class="block" id="about">
-      <div class="wrap">
-        <h2 class="block-title">About</h2>
-        <div class="block-body" id="aboutBody"></div>
-      </div>
-    </section>
-
-    <!-- ============ PROJECTS ============ -->
-    <section class="block" id="projects">
-      <div class="wrap">
-        <h2 class="block-title">Projects</h2>
-        <div class="project-list" id="projectList"></div>
-      </div>
-    </section>
-
-    <!-- ============ SKILLS ============ -->
-    <section class="block" id="skills">
-      <div class="wrap">
-        <h2 class="block-title">Skills</h2>
-        <div class="block-body" id="skillsBody"></div>
-      </div>
-    </section>
-
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="block" id="experience">
-      <div class="wrap">
-        <h2 class="block-title">Experience &amp; Education</h2>
-        <div class="exp-list" id="expList"></div>
-      </div>
-    </section>
-
-    <!-- ============ CERTIFICATIONS ============ -->
-    <section class="block" id="certs">
-      <div class="wrap">
-        <h2 class="block-title">Certifications</h2>
-        <ul class="cert-list" id="certList"></ul>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="block" id="contact">
-      <div class="wrap">
-        <h2 class="block-title">Contact</h2>
-        <div class="block-body contact-body">
-          <p id="contactText"></p>
-          <a class="contact-email" id="contactEmail" href="#"></a>
-          <div class="contact-links" id="contactLinks"></div>
-        </div>
-      </div>
-    </section>
-
-  </div><!-- /mainContent -->
-
-  <!-- ============ PROJECT DETAIL (hidden by default) ============ -->
-  <div id="projectDetail" class="project-page">
-    <div class="wrap">
-      <a href="#projects" class="back-link" id="backLink">← Back to projects</a>
-      <div id="projectContent"></div>
-    </div>
+    <section class="block" id="about"><div class="wrap"><h2 class="block-title">About</h2><div class="block-body" id="aboutBody"></div></div></section>
+    <section class="block" id="projects"><div class="wrap"><h2 class="block-title">Projects</h2><div class="project-list" id="projectList"></div></div></section>
+    <section class="block" id="skills"><div class="wrap"><h2 class="block-title">Skills</h2><div class="block-body" id="skillsBody"></div></div></section>
+    <section class="block" id="experience"><div class="wrap"><h2 class="block-title">Experience &amp; Education</h2><div class="exp-list" id="expList"></div></div></section>
+    <section class="block" id="certs"><div class="wrap"><h2 class="block-title">Certifications</h2><ul class="cert-list" id="certList"></ul></div></section>
+    <section class="block" id="contact"><div class="wrap"><h2 class="block-title">Contact</h2><div class="block-body contact-body"><p id="contactText"></p><a class="contact-email" id="contactEmail" href="#"></a><div class="contact-links" id="contactLinks"></div></div></div></section>
   </div>
-
-  </main>
-
-  <footer class="foot">
-    <div class="wrap foot-inner">
-      <span id="footYear"></span>
-      <span class="foot-credit">Built with vanilla HTML &amp; CSS</span>
-    </div>
-  </footer>
-
-  <button class="to-top" id="toTop" aria-label="Back to top">&uarr;</button>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="data.js?v=2"></script>
-  <script src="script.js?v=2"></script>
+  <div id="projectDetail" class="project-page"><div class="wrap"><a href="#projects" class="back-link" id="backLink">← Back to projects</a><div id="projectContent"></div></div></div></main>
+  <footer class="foot"><div class="wrap foot-inner"><span id="footYear"></span><span class="foot-credit">Built with vanilla HTML &amp; CSS</span></div></footer>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><script src="data.js?v=2"></script><script src="script.js?v=2"></script>
 </body>
 </html>
